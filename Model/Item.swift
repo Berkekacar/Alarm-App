@@ -5,8 +5,9 @@
 //  Created by Berke Kaçar on 31.08.2024.
 //
 
-import Foundation
+
 import SwiftData
+import Foundation
 
 @Model
 final class Alarm {
