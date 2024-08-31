@@ -10,6 +10,7 @@ import SwiftData
 
 
 struct AlarmView: View {
+    @State private var setAlarm = false
     var body: some View {
         GeometryReader{ geometry in
             let width = geometry.size.width
@@ -20,6 +21,8 @@ struct AlarmView: View {
                         .imageScale(.large)
                         .foregroundStyle(.tint)
                     Text("Hello, world!")
+                        .font(.headline)
+                        .padding()
                 }
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -32,6 +35,7 @@ struct AlarmView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
                             print("add")
+                            setAlarm = true
                         }, label: {
                             Image(systemName: "plus")
                         })
@@ -43,6 +47,9 @@ struct AlarmView: View {
                             Text("edit")
                         })
                     }
+                }
+                .sheet(isPresented: $setAlarm){
+                    SetAlarmClockView()
                 }
             }
         }
