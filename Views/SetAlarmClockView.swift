@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SetAlarmClockView: View {
     @State private var selectedTime = Date()
+    @State private var selectedDays: Set<String> = []
     @State private var isSetAlarm = false
     var body: some View {
         GeometryReader{ geometry in
@@ -20,6 +21,8 @@ struct SetAlarmClockView: View {
                 Text("Seçilen Saat: \(formattedTime)")
                     .font(.headline)
                     .padding()
+                DayPickerView(selectedDays: $selectedDays)
+                Text(selectedDays.joined(separator: "."))
             }
             .padding()
             .frame(maxWidth: .infinity,maxHeight: .infinity)
