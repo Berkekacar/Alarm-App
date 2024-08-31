@@ -51,5 +51,5 @@ struct AlarmView: View {
 
 #Preview {
     AlarmView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Alarm.self, inMemory: true)
 }

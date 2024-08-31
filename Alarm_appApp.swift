@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-
+ 
 @main
 struct Alarm_appApp: App {
     var sharedModelContainer: ModelContainer = {
