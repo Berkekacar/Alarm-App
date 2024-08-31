@@ -10,6 +10,7 @@ import SwiftUI
 struct SetAlarmClockView: View {
     @State private var selectedTime = Date()
     @State private var selectedDays: Set<String> = []
+    @Environment(\.modelContext) private var modelContext
     @State private var isSetAlarm = false
     var body: some View {
         GeometryReader{ geometry in
@@ -18,11 +19,17 @@ struct SetAlarmClockView: View {
             VStack{
                 CustomTimePickerView(selectedTime: $selectedTime)
                     .frame(maxWidth: .infinity, maxHeight: height * 0.3)
-                Text("Seçilen Saat: \(formattedTime)")
-                    .font(.headline)
-                    .padding()
                 DayPickerView(selectedDays: $selectedDays)
-                Text(selectedDays.joined(separator: "."))
+                    .frame(height: height * 0.50)
+                    .padding(.bottom, 10)
+                Button(action: {
+                    saveAlerm()
+                    print("Seçilen Saat: \(formattedTime)")
+                    print(selectedDays.joined(separator: "."))
+                }, label: {
+                    Text("Button")
+                })
+                .padding(.top, 10)
             }
             .padding()
             .frame(maxWidth: .infinity,maxHeight: .infinity)
@@ -37,6 +44,17 @@ struct SetAlarmClockView: View {
         formatter.timeStyle = .short
         let dateToDisplay = selectedTime ?? Date()
         return formatter.string(from: dateToDisplay)
+    }
+    private func saveAlerm() {
+        let alarm = Alarm(
+            timestamp: selectedTime,
+            repeatDays: Array(selectedDays)
+        )
+        modelContext.insert(alarm)
+
+        scheduleAlarmNotification(alarm: alarm)
+
+        print("Alarm set for \(formattedTime) on days: \(selectedDays.joined(separator: ", "))")
     }
 }
 
