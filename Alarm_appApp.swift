@@ -26,6 +26,9 @@ struct Alarm_appApp: App {
     var body: some Scene {
         WindowGroup {
             AlarmView()
+                .onAppear {
+                    requestNotificationPermission()
+                }
         }
         .modelContainer(sharedModelContainer)
     }
