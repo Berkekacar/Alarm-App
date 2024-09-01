@@ -10,6 +10,7 @@ import SwiftData
  
 @main
 struct Alarm_appApp: App {
+    @Environment(\.modelContext) private var modelContext
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Alarm.self,

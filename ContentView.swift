@@ -17,12 +17,8 @@ struct AlarmView: View {
             let height = geometry.size.height
             NavigationStack{
                 VStack {
-                    Image(systemName: "globe")
-                        .imageScale(.large)
-                        .foregroundStyle(.tint)
-                    Text("Hello, world!")
-                        .font(.headline)
-                        .padding()
+                    ListAlarmsView()
+                        .padding(.top, height * 0.1)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

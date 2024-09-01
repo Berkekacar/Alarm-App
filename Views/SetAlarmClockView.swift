@@ -11,6 +11,7 @@ struct SetAlarmClockView: View {
     @State private var selectedTime = Date()
     @State private var selectedDays: Set<String> = []
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.presentationMode) var pm
     @State private var isSetAlarm = false
     var body: some View {
         GeometryReader{ geometry in
@@ -24,6 +25,7 @@ struct SetAlarmClockView: View {
                     .padding(.bottom, 10)
                 Button(action: {
                     saveAlerm()
+                    pm.wrappedValue.dismiss()
                     print("Seçilen Saat: \(formattedTime)")
                     print(selectedDays.joined(separator: "."))
                 }, label: {

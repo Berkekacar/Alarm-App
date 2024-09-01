@@ -7,6 +7,7 @@
 
 import Foundation
 import UserNotifications
+import AVFoundation
 
 func scheduleAlarmNotification(alarm: Alarm) {
     let content = UNMutableNotificationContent()
@@ -27,3 +28,5 @@ func scheduleAlarmNotification(alarm: Alarm) {
         }
     }
 }
+
+
